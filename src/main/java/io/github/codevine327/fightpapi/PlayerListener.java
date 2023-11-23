@@ -20,8 +20,6 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     private void onPlayerAttackEntity(EntityDamageByEntityEvent event) {
-        System.out.println(event.getDamager());
-        System.out.println(event.getFinalDamage());
         if (event.getDamager() instanceof Player player) {
             FightPAPI.getInstance().getPlayerData().get(player).addAttackData((int) event.getFinalDamage());
         }
