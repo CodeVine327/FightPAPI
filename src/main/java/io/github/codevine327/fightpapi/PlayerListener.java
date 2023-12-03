@@ -11,24 +11,24 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PlayerListener implements Listener {
     @EventHandler
     private void onPlayerJoin(PlayerJoinEvent event) {
-        FightPAPI.getInstance().getPlayerData().put(event.getPlayer(), new PlayerData());
+        FightPAPI.getInstance().getPlayerData().put(event.getPlayer().getUniqueId(), new PlayerData());
     }
 
     @EventHandler
     private void onPlayerQuit(PlayerQuitEvent event) {
-        FightPAPI.getInstance().getPlayerData().remove(event.getPlayer());
+        FightPAPI.getInstance().getPlayerData().remove(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
     private void onPlayerAttackEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player player) {
-            FightPAPI.getInstance().getPlayerData().get(player).addAttackData((int) event.getFinalDamage());
+            FightPAPI.getInstance().getPlayerData().get(player.getUniqueId()).addAttackData((int) event.getFinalDamage());
             return;
         }
 
         if (event.getDamager() instanceof Projectile projectile &&
                 projectile.getShooter() instanceof Player player) {
-            FightPAPI.getInstance().getPlayerData().get(player).addAttackData((int) event.getFinalDamage());
+            FightPAPI.getInstance().getPlayerData().get(player.getUniqueId()).addAttackData((int) event.getFinalDamage());
         }
     }
 }

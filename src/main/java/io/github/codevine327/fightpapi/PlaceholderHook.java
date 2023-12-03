@@ -1,13 +1,12 @@
 package io.github.codevine327.fightpapi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PlaceholderHook extends PlaceholderExpansion {
-    // %fight_last_attack_damage%
-    // %fight_last_1s_attack_damage%
     @Override
     public @NotNull String getIdentifier() {
         return "fight";
@@ -25,11 +24,18 @@ public class PlaceholderHook extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
+        if (player == null) {
+            return "";
+        }
+
+        if (!FightPAPI.getInstance().getPlayerData().containsKey(player.getUniqueId())) {
+            return "";
+        }
 
         if (params.equalsIgnoreCase("last_attack_damage")) {
-            return String.valueOf(FightPAPI.getInstance().getPlayerData().get(player).getLastAttackDamage());
+            return String.valueOf(FightPAPI.getInstance().getPlayerData().get(player.getUniqueId()).getLastAttackDamage());
         } else if (params.equalsIgnoreCase("last_1s_attack_damage")) {
-            return String.valueOf(FightPAPI.getInstance().getPlayerData().get(player).getLastSecondAttackDamage());
+            return String.valueOf(FightPAPI.getInstance().getPlayerData().get(player.getUniqueId()).getLastSecondAttackDamage());
         } else {
             return "";
         }
