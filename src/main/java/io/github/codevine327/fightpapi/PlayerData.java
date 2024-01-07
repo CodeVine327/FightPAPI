@@ -4,14 +4,17 @@ import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.longs.LongIntImmutablePair;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.boss.BossBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerData {
     @Getter
-    @Setter
     private int lastAttackDamage;
+    @Getter
+    @Setter
+    private BossBar bossBar;
     private final List<Pair<Long, Integer>> attackDamage = new ArrayList<>();
 
     public int getLastSecondAttackDamage() {

@@ -6,3 +6,6 @@ authors: [TheLittle_Yang]
 website: https://github.com/CodeVine327
 depend:
   - PlaceholderAPI
+
+softdepend:
+  - MythicLib

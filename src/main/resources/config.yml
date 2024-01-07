@@ -1,0 +1,11 @@
+boss-bar:
+  enable: true
+  # 支持 MiniMessage
+  title: "<b>次伤：%fight_last_attack_damage% 秒伤：%fight_last_1s_attack_damage%"
+
+# 检测伤害的来源
+# vanilla: 仅检测原版伤害。
+# mmolibs: 检测来自MMOItems的伤害，或者作者的其他衍生插件。（需要安装 MythicLib(MMOLibs) 插件，MMOItems的伤害包括了原版伤害，如果开启本项的话，请禁用原版伤害检测，以防止重复检测）
+data-source:
+  vanilla: false
+  mmolibs: true
