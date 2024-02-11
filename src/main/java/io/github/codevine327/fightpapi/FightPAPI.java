@@ -1,8 +1,6 @@
 package io.github.codevine327.fightpapi;
 
 import io.github.codevine327.fightpapi.bossbar.BossBarManager;
-import io.github.codevine327.fightpapi.listener.ListenerManager;
-import io.github.codevine327.fightpapi.listener.PlayerJoinQuitListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,8 +20,7 @@ public final class FightPAPI extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinQuitListener(), this);
-        ListenerManager.init();
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         BossBarManager.init();
         new PlaceholderHook().register();
     }
